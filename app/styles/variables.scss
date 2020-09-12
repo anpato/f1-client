@@ -1,0 +1,10 @@
+@import '~@react-md/theme/dist/color-palette';
+
+$rmd-theme-light: false;
+$rmd-theme-primary: $rmd-red-500;
+$rmd-theme-secondary: $rmd-grey-500;
+$rmd-theme-dark-elevation: true;
+// other variable overrides
+
+@import '~react-md/dist/react-md';
+@include react-md-utils;

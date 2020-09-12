@@ -7,12 +7,23 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js'
   },
+  stats: {
+    warnings: false
+  },
   module: {
     rules: [
-      { test: /\.(js)$/, use: 'babel-loader' },
+      {
+        test: /\.(js)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          plugins: ['@babel/transform-runtime']
+        }
+      },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
