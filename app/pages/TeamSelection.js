@@ -21,12 +21,12 @@ const TeamSelection = ({
     getTeams(search.replace('?', ''))
   }, [])
   const handleNavigate = (team) => {
-    selectTeam(team)
+    selectTeam(team.Team)
     history.push(
       `/setups?trackId=${selectedTrack.id}&team=${slugify(team.Team.teamName, {
         replaceMent: '-',
         lower: true
-      })}`
+      })}&setup_id=${team.id}`
     )
   }
   const DisplayTeams = () => (

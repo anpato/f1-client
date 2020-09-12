@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js'
   },
+  devtool: 'eval-cheap-source-map',
   stats: {
     warnings: false
   },
@@ -25,6 +26,10 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
     ]
   },

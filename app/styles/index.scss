@@ -2,18 +2,26 @@
 @import 'variables';
 @import '~@react-md/theme/dist/color-palette';
 
-.track-card {}
-
-.list-item {
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.2s;
-
-    &:hover {
-        border: 1px solid $rmd-theme-primary;
-    }
+.track-card {
+  width: 540px;
 }
 
+.list-item {
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+
+  &:hover {
+    border: 1px solid $rmd-theme-primary;
+  }
+}
+.stat {
+  margin: 0.5em auto;
+}
+.red {
+  color: $rmd-theme-primary;
+  user-select: none;
+}
 .card-data {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }

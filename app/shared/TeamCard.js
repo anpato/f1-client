@@ -17,7 +17,8 @@ export const TeamCard = ({
   lapTime,
   raceMode,
   conditions,
-  className
+  className,
+  children
 }) => (
   <Card className={className}>
     <Grid columns={2}>
@@ -45,16 +46,18 @@ export const TeamCard = ({
         </CardTitle>
       </div>
     </Grid>
-    <Grid columns={3}>
-      <CardSubtitle className="card-data">{raceMode}</CardSubtitle>
-      <CardSubtitle className="card-data">{lapTime || '0.0.00'}</CardSubtitle>
-      <CardSubtitle className="card-data">
-        {conditions && conditions === 'wet' ? (
-          <WbCloudyFontIcon className="card-data" />
-        ) : (
-          <WbSunnyFontIcon className="card-data" />
-        )}
-      </CardSubtitle>
-    </Grid>
+    {children || (
+      <Grid columns={3}>
+        <CardSubtitle className="card-data">{raceMode}</CardSubtitle>
+        <CardSubtitle className="card-data">{lapTime || '0.0.00'}</CardSubtitle>
+        <CardSubtitle className="card-data">
+          {conditions && conditions === 'wet' ? (
+            <WbCloudyFontIcon className="card-data" />
+          ) : (
+            <WbSunnyFontIcon className="card-data" />
+          )}
+        </CardSubtitle>
+      </Grid>
+    )}
   </Card>
 )

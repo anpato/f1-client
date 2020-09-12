@@ -21,6 +21,10 @@ export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
 /**Auth Types */
 
 /**Setup Types */
+export const GET_SETUP = 'GET_SETUP'
+export const SETUP_LOADING = 'SETUP_LOADING'
+export const SETUP_LOADED = 'SETUP_LOADED'
+export const SETUP_FETCH_ERROR = 'SETUP_FETCH_ERROR'
 /**Setup Types */
 
 /**DOM Types */

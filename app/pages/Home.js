@@ -18,9 +18,12 @@ const Home = ({
   const navigation = useHistory()
   useEffect(() => {
     getTracks()
-    window.addEventListener('resize', () => updatePageSize(window.innerWidth))
+    function resize() {
+      updatePageSize(window.innerWidth)
+    }
+    window.addEventListener('resize', resize)
     return () => {
-      window.removeEventListener('resize', updatePageSize)
+      window.removeEventListener('resize', resize)
     }
   }, [dom.innerWidth, trackList.length])
 
