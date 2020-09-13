@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FetchTeams, SetTeam } from '../store/actions'
 import { Grid, CardTitle, Button } from 'react-md'
-import { TrackCard, TeamCard, Loader } from '../shared'
+import { TrackCard, TeamCard, Loader, LazyImage } from '../shared'
 import slugify from 'slugify'
 const TeamSelection = ({
   getTeams,
@@ -60,7 +60,14 @@ const TeamSelection = ({
         </Grid>
       )
     case teamsLoading:
-      return <Loader type="circle" />
+      return (
+        <>
+          <Loader type="circle" />
+          {new Array(3).fill().map((e, i) => (
+            <LazyImage key={i} />
+          ))}
+        </>
+      )
     default:
       return <div></div>
   }

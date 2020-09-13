@@ -19,6 +19,7 @@
     "axios": "^0.20.0",
     "decamelize": "^4.0.0",
     "react": "^16.13.1",
+    "react-content-loader": "^5.1.1",
     "react-dom": "^16.13.1",
     "react-facebook-login": "^4.1.1",
     "react-md": "^2.3.0",

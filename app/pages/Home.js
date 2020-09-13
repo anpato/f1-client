@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FetchTracks, UpdatePageWidth, SetTrack } from '../store/actions'
 import { Button, Grid, Text } from 'react-md'
-import { TrackCard, Loader } from '../shared'
+import { TrackCard, Loader, LazyImage } from '../shared'
 import { useHistory } from 'react-router-dom'
+import { Facebook } from 'react-content-loader'
 
 const Home = ({
   dom,
@@ -53,17 +54,21 @@ const Home = ({
 
   switch (true) {
     case tracksLoading:
-      return <Loader />
-    case tracksLoaded:
+      return (
+        <>
+          <Loader />
+          <Grid columns={3}>
+            {new Array(10).fill().map((e, i) => (
+              <LazyImage key={i} />
+            ))}
+          </Grid>
+        </>
+      )
+    case tracksLoaded && !tracksLoading:
       return displayTracks()
     // case trackFetchError:
-
     default:
-      return (
-        <div>
-          <Text>Error</Text>
-        </div>
-      )
+      return <Loader />
   }
 }
 
