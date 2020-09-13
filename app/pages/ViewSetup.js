@@ -116,12 +116,12 @@ const ViewSetup = ({ getSetup, selectedTeam, setup, history, track }) => {
 
   const displaySetupData = (pageData) => {
     return pageData.map((v) => (
-      <div>
+      <div key={v.header}>
         <h1 style={{ fontSize: '1.3rem', padding: '1em' }}>{v.header}</h1>
         <Divider />
         <Grid columns={2}>
           {v.data.map((d) => (
-            <Card>
+            <Card key={d.label}>
               <CardHeader>
                 <div
                   style={{
@@ -161,7 +161,7 @@ const ViewSetup = ({ getSetup, selectedTeam, setup, history, track }) => {
                 }}
               >
                 {RaceInfo.map((info) => (
-                  <div style={{ textAlign: 'center' }}>
+                  <div style={{ textAlign: 'center' }} key={info.label}>
                     <CardSubtitle className="card-data">
                       {info.label}
                     </CardSubtitle>

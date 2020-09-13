@@ -1,7 +1,11 @@
 const initialState = {
   authenticated: false,
   logInError: false,
-  currentUser: {}
+  currentUser: {},
+  loginForm: {
+    email: '',
+    password: ''
+  }
 }
 export default (state = initialState, action) => {
   switch (action.type) {

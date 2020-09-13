@@ -1,5 +1,6 @@
 const initialState = {
-  windowWidth: 1920
+  windowWidth: 1920,
+  modalOpen: false
 }
 
 export default (state = initialState, action) => {
@@ -9,6 +10,8 @@ export default (state = initialState, action) => {
         ...state,
         windowWidth: action.payload
       }
+    case 'TOGGLE_MODAL':
+      return { ...state, modalOpen: action.payload }
     default:
       return state
   }

@@ -29,4 +29,5 @@ export const SETUP_FETCH_ERROR = 'SETUP_FETCH_ERROR'
 
 /**DOM Types */
 export const GET_WINDOW_WIDTH = 'GET_WINDOW_WIDTH'
+export const TOGGLE_MODAL = 'TOGGLE_MODAL'
 /**DOM Types */

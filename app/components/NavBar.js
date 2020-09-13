@@ -8,7 +8,8 @@ import {
 } from 'react-md'
 import F1Logo from '../assets/F1.svg'
 import { connect } from 'react-redux'
-const NavBar = () => {
+import { ToggleModal } from '../store/actions'
+const NavBar = ({ toggleModal, modalOpen }) => {
   return (
     <AppBar theme="primary" fixed>
       <AppBarTitle style={{ width: 'auto' }}>
@@ -20,14 +21,18 @@ const NavBar = () => {
           />
         </div>
       </AppBarTitle>
-      <AppBarAction first>
+      <AppBarAction first onClick={() => toggleModal(true)}>
         <PersonSVGIcon />
       </AppBarAction>
     </AppBar>
   )
 }
-const mapStateToProps = (state) => ({})
+const mapStateToProps = ({ Dom }) => ({
+  modalOpen: Dom.modalOpen
+})
 
-const mapDispatchToProps = (dispatch) => ({})
+const mapDispatchToProps = (dispatch) => ({
+  toggleModal: (boolean) => dispatch(ToggleModal(boolean))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

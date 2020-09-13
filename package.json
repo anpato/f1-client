@@ -10,7 +10,7 @@
   },
   "scripts": {
     "create": "webpack",
-    "start": "webpack-dev-server --content-base app --hot --inline"
+    "start": "webpack-dev-server --content-base app --hot --inline --open"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,6 +20,7 @@
     "decamelize": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-facebook-login": "^4.1.1",
     "react-md": "^2.3.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

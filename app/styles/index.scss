@@ -25,3 +25,29 @@
 .card-data {
   font-size: 1.2rem;
 }
+
+label {
+  pointer-events: none;
+}
+
+.login-form {
+  min-width: 516px;
+  max-width: 5165px;
+  min-height: 670px;
+  max-height: 670px;
+  form {
+    width: 100%;
+    .login-input {
+      margin: 1em auto;
+      width: 100%;
+    }
+    button {
+      margin: 1em auto;
+      width: 100%;
+    }
+  }
+}
+
+.modal {
+  border-radius: 0.5rem;
+}
