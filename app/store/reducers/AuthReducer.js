@@ -24,6 +24,12 @@ export default (state = initialState, action) => {
         ...state,
         authenticated: true
       }
+    case 'LOGIN_FORM':
+      const { key, value } = action.payload
+      return {
+        ...state,
+        loginForm: { ...state.loginForm, [key]: value }
+      }
     default:
       return state
   }

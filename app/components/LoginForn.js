@@ -12,8 +12,13 @@ import FbLogin from 'react-facebook-login'
 import { connect } from 'react-redux'
 import { Link as RRLink } from 'react-router-dom'
 import GoogleBtn from '../assets/google_signin.png'
+import { HandleLoginForm } from '../store/actions'
 
-const LoginForm = () => {
+const LoginForm = ({ authForm, handleLoginForm }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    handleLoginForm(name, value)
+  }
   return (
     <DialogContent className="login-form">
       <div style={{ height: '2.5rem' }}></div>
@@ -24,6 +29,9 @@ const LoginForm = () => {
             id="login-email"
             label="Email"
             type="email"
+            name="email"
+            value={authForm.email}
+            onChange={handleChange}
             required
           />
           <TextField
@@ -31,6 +39,9 @@ const LoginForm = () => {
             className="login-input"
             label="Password"
             type="password"
+            name="password"
+            value={authForm.password}
+            onChange={handleChange}
             required
           />
           <Button theme="primary" themeType="contained">
@@ -65,4 +76,12 @@ const LoginForm = () => {
   )
 }
 
-export default connect()(LoginForm)
+const mapStateToProps = ({ Auth }) => ({
+  authForm: Auth.loginForm
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLoginForm: (name, value) => dispatch(HandleLoginForm(name, value))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

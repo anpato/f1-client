@@ -18,6 +18,7 @@ export const GRANDPRIX_ERROR = 'GRAND_PRIX_ERROR'
 export const LOGIN_IN_USER = 'LOG_IN_USER'
 export const LOG_IN_ERROR = 'LOG_IN_ERROR'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
+export const LOGIN_FORM = 'LOGIN_FORM'
 /**Auth Types */
 
 /**Setup Types */
