@@ -1,5 +1,5 @@
 const initialState = {
-  windowWidth: 1920,
+  windowWidth: 0,
   modalOpen: false
 }
 

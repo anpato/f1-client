@@ -22,11 +22,14 @@ const Home = ({
     function resize() {
       updatePageSize(window.innerWidth)
     }
+    resize()
     window.addEventListener('resize', resize)
+    window.addEventListener('load', resize)
     return () => {
       window.removeEventListener('resize', resize)
+      window.removeEventListener('load', resize)
     }
-  }, [dom.innerWidth, trackList.length])
+  }, [trackList.length])
 
   const handleNavigate = (track) => {
     selectTrack(track)

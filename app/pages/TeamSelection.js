@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FetchTeams, SetTeam } from '../store/actions'
-import { Grid, CardTitle, Button } from 'react-md'
+import { Grid, CardTitle, Button, Text } from 'react-md'
 import { TrackCard, TeamCard, Loader, LazyImage } from '../shared'
 import slugify from 'slugify'
 const TeamSelection = ({
@@ -48,7 +48,7 @@ const TeamSelection = ({
     </Grid>
   )
   switch (true) {
-    case teams && selectedTrack && teamsLoaded:
+    case teams && teamsLoaded:
       return (
         <Grid columns={1}>
           <TrackCard
@@ -62,14 +62,33 @@ const TeamSelection = ({
     case teamsLoading:
       return (
         <>
-          <Loader type="circle" />
-          {new Array(3).fill().map((e, i) => (
-            <LazyImage key={i} />
-          ))}
+          <Loader />
+          <TrackCard
+            imgSrc={selectedTrack.locationFlag}
+            title={selectedTrack.name}
+            subtitle={selectedTrack.location}
+          />
+          <Grid columns={2}>
+            {new Array(3).fill().map((e, i) => (
+              <LazyImage key={i} />
+            ))}
+          </Grid>
         </>
       )
     default:
-      return <div></div>
+      return (
+        <>
+          <Loader />
+          <TrackCard
+            imgSrc={selectedTrack.locationFlag}
+            title={selectedTrack.name}
+            subtitle={selectedTrack.location}
+          />
+          <div>
+            <Text>No Setups Available</Text>
+          </div>
+        </>
+      )
   }
 }
 
