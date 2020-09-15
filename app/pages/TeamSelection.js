@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FetchTeams, SetTeam } from '../store/actions'
-import { Grid, CardTitle, Button, Text } from 'react-md'
+import { Grid, Button, Text } from 'react-md'
 import { TrackCard, TeamCard, Loader, LazyImage } from '../shared'
 import slugify from 'slugify'
 const TeamSelection = ({

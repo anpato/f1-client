@@ -4,7 +4,6 @@ import { FetchTracks, UpdatePageWidth, SetTrack } from '../store/actions'
 import { Button, Grid, Text } from 'react-md'
 import { TrackCard, Loader, LazyImage } from '../shared'
 import { useHistory } from 'react-router-dom'
-import { Facebook } from 'react-content-loader'
 
 const Home = ({
   dom,

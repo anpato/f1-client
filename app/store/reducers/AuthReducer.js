@@ -1,11 +1,14 @@
 const initialState = {
   authenticated: false,
-  logInError: false,
+  formError: false,
+  formSubmit: false,
+  signInLoading: false,
   currentUser: {},
   loginForm: {
     email: '',
     password: ''
-  }
+  },
+  registerForm: {}
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -14,21 +17,31 @@ export default (state = initialState, action) => {
         ...state,
         currentUser: action.payload
       }
-    case 'LOG_IN_ERROR':
+    case 'Form_ERROR':
       return {
         ...state,
-        logInError: true
+        formError: action.payload
       }
     case 'LOG_IN_SUCCESS':
       return {
         ...state,
-        authenticated: true
+        authenticated: action.payload
       }
     case 'LOGIN_FORM':
       const { key, value } = action.payload
       return {
         ...state,
         loginForm: { ...state.loginForm, [key]: value }
+      }
+    case 'SIGN_IN_LOADING':
+      return { ...state, signInLoading: action.payload }
+    case 'AUTH_FORM_SUBMIT':
+      return { ...state, formSubmit: action.payload }
+    case 'REGISTER_FORM':
+      const { key, value } = action.payload
+      return {
+        ...state,
+        registerForm: { ...state.registerForm, [key]: value }
       }
     default:
       return state
