@@ -6,24 +6,49 @@ import {
   Text,
   Link,
   Divider,
-  FontIcon
+  CircularProgress,
+  TextIconSpacing,
+  ArrowForwardSVGIcon,
+  FormMessage
 } from 'react-md'
 import FbLogin from 'react-facebook-login'
 import { connect } from 'react-redux'
 import { Link as RRLink } from 'react-router-dom'
 import GoogleBtn from '../assets/google_signin.png'
-import { HandleLoginForm } from '../store/actions'
+import { HandleLoginForm, SignInUser, ToggleLoginError } from '../store/actions'
 
-const LoginForm = ({ authForm, handleLoginForm }) => {
+const LoginForm = ({
+  authForm,
+  authState,
+  handleLoginForm,
+  submitLogin,
+  toggleFormError
+}) => {
   const handleChange = (e) => {
     const { name, value } = e.target
     handleLoginForm(name, value)
+    toggleFormError(false)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    submitLogin(authForm)
+  }
+
+  const toggleButtonDisabled = () => {
+    if (authForm.email && authForm.password && !authState.formError) {
+      return false
+    } else if (authState.formError) {
+      return true
+    } else {
+      return true
+    }
   }
   return (
     <DialogContent className="login-form">
       <div style={{ height: '2.5rem' }}></div>
       <div style={{ padding: '1em 0' }}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <TextField
             className="login-input"
             id="login-email"
@@ -44,8 +69,34 @@ const LoginForm = ({ authForm, handleLoginForm }) => {
             onChange={handleChange}
             required
           />
-          <Button theme="primary" themeType="contained">
-            Login
+          {authState.formError ? (
+            <div style={{ textAlign: 'center', width: '100%' }}>
+              <Text id="form-error" style={{ margin: 'auto' }}>
+                Invalid Credentials
+              </Text>
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <Button
+            theme="primary"
+            themeType="outline"
+            onClick={handleSubmit}
+            disabled={toggleButtonDisabled()}
+            type="submit"
+          >
+            <TextIconSpacing
+              iconAfter
+              icon={
+                authState.signInLoading ? (
+                  <CircularProgress id="loading-form" centered={false} />
+                ) : (
+                  <ArrowForwardSVGIcon />
+                )
+              }
+            >
+              Login
+            </TextIconSpacing>
           </Button>
         </form>
         <div style={{ margin: 'auto', textAlign: 'center' }}>
@@ -77,11 +128,14 @@ const LoginForm = ({ authForm, handleLoginForm }) => {
 }
 
 const mapStateToProps = ({ Auth }) => ({
-  authForm: Auth.loginForm
+  authForm: Auth.loginForm,
+  authState: Auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  handleLoginForm: (name, value) => dispatch(HandleLoginForm(name, value))
+  handleLoginForm: (name, value) => dispatch(HandleLoginForm(name, value)),
+  toggleFormError: (boolean) => dispatch(ToggleLoginError(boolean)),
+  submitLogin: (formData) => dispatch(SignInUser(formData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

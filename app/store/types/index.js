@@ -16,12 +16,14 @@ export const GRANDPRIX_ERROR = 'GRAND_PRIX_ERROR'
 
 /**Auth Types */
 export const LOGIN_IN_USER = 'LOG_IN_USER'
-export const FORM_ERROR = 'LOG_IN_ERROR'
+export const FORM_ERROR = 'FORM_ERROR'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
 export const LOGIN_FORM = 'LOGIN_FORM'
 export const SIGN_IN_LOADING = 'SIGN_IN_LOADING'
 export const AUTH_FORM_SUBMIT = 'AUTH_FORM_SUBMIT'
 export const REGISTER_FORM = 'REGISTER_FORM'
+export const SET_USER = 'SET_USER'
+export const RESET_FORM = 'RESET_FORM'
 /**Auth Types */
 
 /**Setup Types */

@@ -17,11 +17,20 @@ export default (state = initialState, action) => {
         ...state,
         currentUser: action.payload
       }
-    case 'Form_ERROR':
+    case 'FORM_ERROR':
       return {
         ...state,
         formError: action.payload
       }
+    case 'RESET_FORM': {
+      return {
+        ...state,
+        [action.payload.form]: {
+          ...state[action.payload.form],
+          [action.payload.value]: ''
+        }
+      }
+    }
     case 'LOG_IN_SUCCESS':
       return {
         ...state,
@@ -37,11 +46,19 @@ export default (state = initialState, action) => {
       return { ...state, signInLoading: action.payload }
     case 'AUTH_FORM_SUBMIT':
       return { ...state, formSubmit: action.payload }
-    case 'REGISTER_FORM':
-      const { key, value } = action.payload
+    case 'SET_USER':
       return {
         ...state,
-        registerForm: { ...state.registerForm, [key]: value }
+        currentUser: action.payload
+      }
+    case 'REGISTER_FORM':
+      // const { key, value } = action.payload
+      return {
+        ...state,
+        registerForm: {
+          ...state.registerForm,
+          [action.payload.key]: action.payload.value
+        }
       }
     default:
       return state
