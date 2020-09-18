@@ -37,3 +37,10 @@ export const SETUP_FETCH_ERROR = 'SETUP_FETCH_ERROR'
 export const GET_WINDOW_WIDTH = 'GET_WINDOW_WIDTH'
 export const TOGGLE_MODAL = 'TOGGLE_MODAL'
 /**DOM Types */
+
+/**Profile Types */
+export const GET_PROFILE = 'GET_PROFILE'
+export const PROFILE_LOADING = 'PROFILE_LOADING'
+export const PROFILE_LOADED = 'PROFILE_LOADED'
+export const PROFILE_FETCH_ERROR = 'PROFILE_FETCH_ERROR'
+/**Profile Types */

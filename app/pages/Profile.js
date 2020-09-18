@@ -1,11 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { GetProfile } from '../store/actions'
 
 const Profile = () => {
   return <div></div>
 }
 
-const mapStateToProps = () => ({})
-const mapDispatchToProps = (dispatch) => ({})
+const mapStateToProps = ({ Profile }) => ({
+  profile: { ...Profile }
+})
+const mapDispatchToProps = (dispatch) => ({
+  getProfile: (userId) => dispatch(GetProfile(userId))
+})
 
-export default connect()(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
