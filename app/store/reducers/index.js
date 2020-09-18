@@ -4,4 +4,5 @@ import Auth from './AuthReducer'
 import Tracks from './TrackReducer'
 import Dom from './DomReducer'
 import Setup from './SetupReducer'
-export default combineReducers({ Teams, Auth, Tracks, Dom, Setup })
+import Profile from './ProfileReducer'
+export default combineReducers({ Teams, Auth, Tracks, Dom, Setup, Profile })
