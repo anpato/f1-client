@@ -13,7 +13,7 @@ import {
 } from 'react-md'
 import FbLogin from 'react-facebook-login'
 import { connect } from 'react-redux'
-import { Link as RRLink } from 'react-router-dom'
+import { Link as RRLink, useHistory } from 'react-router-dom'
 import GoogleBtn from '../assets/google_signin.png'
 import { HandleLoginForm, SignInUser, ToggleLoginError } from '../store/actions'
 
@@ -24,6 +24,7 @@ const LoginForm = ({
   submitLogin,
   toggleFormError
 }) => {
+  const history = useHistory()
   const handleChange = (e) => {
     const { name, value } = e.target
     handleLoginForm(name, value)
@@ -32,7 +33,7 @@ const LoginForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    submitLogin(authForm)
+    submitLogin(authForm, history.push('/auth/profile'))
   }
 
   const toggleButtonDisabled = () => {

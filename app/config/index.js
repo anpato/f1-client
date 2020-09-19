@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { GetToken } from '../utils'
 const env = process.env
 const Client = axios.create({
   baseURL: (function () {
@@ -10,5 +11,16 @@ const Client = axios.create({
     }
   })()
 })
+
+Client.interceptors.request.use(
+  async (config) => {
+    const token = GetToken('token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  (err) => Promise.reject(err)
+)
 
 export default Client

@@ -12,6 +12,11 @@ const initialState = {
 }
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'AUTHENTICATE':
+      return {
+        ...state,
+        authenticated: action.payload
+      }
     case 'LOG_IN_USER':
       return {
         ...state,

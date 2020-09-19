@@ -24,6 +24,7 @@ export const AUTH_FORM_SUBMIT = 'AUTH_FORM_SUBMIT'
 export const REGISTER_FORM = 'REGISTER_FORM'
 export const SET_USER = 'SET_USER'
 export const RESET_FORM = 'RESET_FORM'
+export const AUTHENTICATE = 'AUTHENTICATE'
 /**Auth Types */
 
 /**Setup Types */

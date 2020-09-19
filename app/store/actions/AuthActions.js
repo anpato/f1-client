@@ -1,14 +1,16 @@
-import { SignIn } from '../../services'
+import { CheckTokenValid, SignIn } from '../../services'
 import {
   FORM_ERROR,
   LOGIN_FORM,
   SIGN_IN_LOADING,
   LOG_IN_SUCCESS,
   SET_USER,
-  RESET_FORM
+  RESET_FORM,
+  AUTHENTICATE
 } from '../types'
+import { ToggleModal } from './DomActions'
 
-export const SignInUser = (formData) => {
+export const SignInUser = (formData, done) => {
   return async (dispatch) => {
     try {
       dispatch(ToggleLoginLoading(true))
@@ -16,6 +18,9 @@ export const SignInUser = (formData) => {
       dispatch(SetUser(user))
       dispatch(ToggleLoginLoading(false))
       dispatch(ToggleLoginSuccess(true))
+      dispatch(Authenticate(true))
+      dispatch(ToggleModal(false))
+      done()
     } catch (error) {
       dispatch(ToggleLoginLoading(false))
       dispatch(ToggleLoginError(true))
@@ -23,6 +28,26 @@ export const SignInUser = (formData) => {
     }
   }
 }
+
+export const VerifyToken = (done) => {
+  return async (dispatch) => {
+    try {
+      const res = await CheckTokenValid()
+      if (res === 200) {
+        dispatch(Authenticate(true))
+        return done()
+      }
+      return dispatch(Authenticate(false))
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const Authenticate = (boolean) => ({
+  type: AUTHENTICATE,
+  payload: boolean
+})
 
 export const HandleLoginForm = (key, value) => ({
   type: LOGIN_FORM,

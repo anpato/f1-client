@@ -38,7 +38,11 @@ const Home = ({
   const displayTracks = () => (
     <Grid columns={Math.floor(dom.windowWidth / 540)}>
       {trackList.map((track) => (
-        <Button key={track.id} onClick={() => handleNavigate(track)}>
+        <Button
+          key={track.id}
+          onClick={() => handleNavigate(track)}
+          style={{ width: '540px', margin: 'auto' }}
+        >
           <TrackCard
             className="list-item"
             styles={{ width: '540px' }}

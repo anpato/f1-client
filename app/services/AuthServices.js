@@ -19,3 +19,12 @@ export const Register = async (formData) => {
     throw error
   }
 }
+
+export const CheckTokenValid = async () => {
+  try {
+    const res = await Client.post('/auth/token/validate')
+    return res.status
+  } catch (error) {
+    throw error
+  }
+}

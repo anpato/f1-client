@@ -4,7 +4,7 @@ import { Card, CardContent } from 'react-md'
 
 export const LazyImage = ({ props }) => {
   return (
-    <Card style={{ width: 540 }}>
+    <Card style={{ width: '540px' }}>
       <CardContent>
         <ContentLoader
           speed={2}
