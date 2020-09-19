@@ -23,7 +23,8 @@ export const Register = async (formData) => {
 export const CheckTokenValid = async () => {
   try {
     const res = await Client.post('/auth/token/validate')
-    return res.status
+    let user = { displayName: res.data.user.displayName, id: res.data.user.id }
+    return { status: res.status, user }
   } catch (error) {
     throw error
   }

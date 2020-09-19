@@ -33,8 +33,9 @@ export const VerifyToken = (done) => {
   return async (dispatch) => {
     try {
       const res = await CheckTokenValid()
-      if (res === 200) {
+      if (res.status === 200) {
         dispatch(Authenticate(true))
+        dispatch(SetUser(res.user))
         return done()
       }
       return dispatch(Authenticate(false))

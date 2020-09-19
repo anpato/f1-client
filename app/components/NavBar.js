@@ -7,28 +7,38 @@ import {
   PeopleSVGIcon,
   DashboardSVGIcon,
   SaveSVGIcon,
+  HomeSVGIcon,
   Tooltipped
 } from 'react-md'
 import F1Logo from '../assets/F1.svg'
 import { connect } from 'react-redux'
 import { ToggleModal } from '../store/actions'
-import { Link as RRLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 const NavBar = ({ toggleModal, authenticated }) => {
   const history = useHistory()
   const AuthOptions = [
+    <Tooltipped tooltip="Go Home" position="below" key={0}>
+      <AppBarAction
+        id="home"
+        first
+        onClick={() => history.push('/profile?authenticated=true')}
+      >
+        <HomeSVGIcon />
+      </AppBarAction>
+    </Tooltipped>,
     <Tooltipped
-      key={0}
+      key={1}
       id="dash-tt"
       position="below"
       tooltip="Your Dashboard"
       hoverDelay={0}
     >
-      <AppBarAction id="profile" first>
+      <AppBarAction id="profile" onClick={() => history.push('/profile/cms')}>
         <DashboardSVGIcon />
       </AppBarAction>
     </Tooltipped>,
     <Tooltipped
-      key={1}
+      key={2}
       id="favorites-tt"
       position="below"
       tooltip="Your Favorites"
@@ -43,7 +53,7 @@ const NavBar = ({ toggleModal, authenticated }) => {
       tooltip="Logout"
       position="below"
       hoverDelay={0}
-      key={2}
+      key={3}
     >
       <AppBarAction id="edit-profile" last onClick={() => toggleModal(true)}>
         <PeopleSVGIcon />

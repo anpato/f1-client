@@ -10,6 +10,7 @@ import { ToggleModal } from './store/actions'
 import LoginForn from './components/LoginForn'
 import Profile from './pages/Profile'
 import { Button, DialogContent, DialogFooter } from 'react-md'
+import CreatorDashboard from './pages/CreatorDashboard'
 
 const mapStateToProps = ({ Dom, Auth }) => ({
   modalOpen: Dom.modalOpen,
@@ -56,12 +57,14 @@ export default connect(
             exact
             path="/profile"
             render={(props) => <Home {...props} />}
-            isAuthenticated={isAuthenticated}
           />
           <AuthRoute
             path="/auth/profile"
             render={(props) => <Profile {...props} />}
-            isAuthenticated={isAuthenticated}
+          />
+          <AuthRoute
+            path="/profile/cms"
+            render={(props) => <CreatorDashboard {...props} />}
           />
         </Switch>
       </main>
