@@ -1,6 +1,8 @@
 @import 'reset';
 @import 'variables';
 @import '~@react-md/theme/dist/color-palette';
+@import 'react-md/dist/scss/styles';
+@import 'sectionHeader';
 
 .track-card {
   width: 540px;

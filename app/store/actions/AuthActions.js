@@ -9,6 +9,7 @@ import {
   AUTHENTICATE
 } from '../types'
 import { ToggleModal } from './DomActions'
+import { GetProfile } from './ProfileActions'
 
 export const SignInUser = (formData, done) => {
   return async (dispatch) => {
@@ -35,7 +36,7 @@ export const VerifyToken = (done) => {
       const res = await CheckTokenValid()
       if (res.status === 200) {
         dispatch(Authenticate(true))
-        dispatch(SetUser(res.user))
+        dispatch(GetProfile(res.user.id))
         return done()
       }
       return dispatch(Authenticate(false))

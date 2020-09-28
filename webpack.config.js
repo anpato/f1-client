@@ -6,12 +6,14 @@ module.exports = {
   entry: './app/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    publicPath: '/'
   },
   devtool: 'eval-cheap-source-map',
   stats: {
     warnings: false
   },
+
   module: {
     rules: [
       {
@@ -34,7 +36,10 @@ module.exports = {
       }
     ]
   },
-  mode: 'development',
+  devServer: {
+    historyApiFallback: true
+  },
+  // mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
       template: 'app/index.html'

@@ -1,0 +1,22 @@
+.header {
+  margin: 2em auto;
+  width: 100%;
+  .action-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .profile-section-data {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    padding: 1em;
+
+    button {
+      margin-top: 1em;
+    }
+  }
+  .profile-section-header {
+    font-size: 1.3rem;
+  }
+}

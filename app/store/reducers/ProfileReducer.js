@@ -11,7 +11,7 @@ export default (state = intialState, action) => {
     case 'GET_PROFILE':
       return {
         ...state,
-        userProfile: action.payload.profile,
+        userProfile: action.payload.user,
         favorites: action.payload.favorites,
         authored: action.payload.authored
       }

@@ -5,6 +5,7 @@ export const GetProfile = (userId) => {
     try {
       dispatch(ToggleProfileLoading(true))
       const data = await GetUserProfile(userId)
+      console.log(data)
       dispatch(SetProfile(data))
       dispatch(ToggleProfileLoading(false))
       dispatch(ToggleProfileLoaded(true))
@@ -15,22 +16,22 @@ export const GetProfile = (userId) => {
   }
 }
 
-export const SetProfile = (object) => ({
+const SetProfile = (object) => ({
   type: GET_PROFILE,
   payload: object
 })
 
-export const ToggleProfileLoading = (boolean) => ({
+const ToggleProfileLoading = (boolean) => ({
   type: PROFILE_LOADING,
   payload: boolean
 })
 
-export const ToggleProfileLoaded = (boolean) => ({
+const ToggleProfileLoaded = (boolean) => ({
   type: PROFILE_LOADED,
-  payload: action.payload
+  payload: boolean
 })
 
-export const ToggleProfileError = (boolean) => ({
+const ToggleProfileError = (boolean) => ({
   type: PROFILE_FETCH_ERROR,
   payload: boolean
 })
