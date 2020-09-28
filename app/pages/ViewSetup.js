@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { FetchSetup } from '../store/actions'
+import { FetchSetup, SaveFavorite } from '../store/actions'
 import decamilize from 'decamelize'
 import { Loader, TeamCard, TrackCard } from '../shared'
 import {
@@ -9,17 +9,32 @@ import {
   Card,
   Divider,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,
+  Button,
+  SaveSVGIcon,
+  Tooltipped,
+  DeleteSVGIcon
 } from 'react-md'
-const ViewSetup = ({ getSetup, selectedTeam, setup, history, track }) => {
+import { FavoriteSetup } from '../services'
+const ViewSetup = ({
+  getSetup,
+  selectedTeam,
+  setup,
+  history,
+  track,
+  authenticated,
+  favorites,
+  user,
+  favoriteSetup
+}) => {
   useEffect(() => {
     const {
       location: { search }
     } = history
     let qs = search.split('=')
     getSetup(qs[qs.length - 1])
-  }, [])
-
+  }, [favoriteSetup])
+  console.log(user, setup)
   const checkKeys = (k, value) => {
     switch (k) {
       case 'createdAt':
@@ -29,6 +44,14 @@ const ViewSetup = ({ getSetup, selectedTeam, setup, history, track }) => {
       default:
         return value
     }
+  }
+
+  const isFavorited = () => {
+    if (!user) return
+    if (favorites.find((s) => s.id === setup.setup.id)) {
+      return true
+    }
+    return false
   }
 
   const createSectionData = (values) => {
@@ -180,6 +203,23 @@ const ViewSetup = ({ getSetup, selectedTeam, setup, history, track }) => {
             />
           </Grid>
           {displaySetupData(pageData)}
+          {authenticated ? (
+            <Tooltipped
+              id="save-favorite"
+              tooltip={
+                isFavorited() ? 'Remove From Favorites' : 'Save To Favorites'
+              }
+              position="left"
+            >
+              <Button
+                theme={isFavorited() ? 'secondary' : 'primary'}
+                floating="bottom-right"
+                onClick={() => favoriteSetup(setup.setup.id, user)}
+              >
+                {isFavorited() ? <DeleteSVGIcon /> : <SaveSVGIcon />}
+              </Button>
+            </Tooltipped>
+          ) : null}
         </Grid>
       )
     case setup.setupLoading:
@@ -188,13 +228,17 @@ const ViewSetup = ({ getSetup, selectedTeam, setup, history, track }) => {
       return <div></div>
   }
 }
-const mapStateToProps = ({ Teams, Setup, Tracks }) => ({
+const mapStateToProps = ({ Teams, Setup, Tracks, Auth, Profile }) => ({
   selectedTeam: Teams.selectedTeam,
   setup: Setup,
-  track: Tracks.selectedTrack
+  track: Tracks.selectedTrack,
+  authenticated: Auth.authenticated,
+  favorites: Profile.favorites,
+  user: Profile.userProfile.id
 })
 
-const mapDisptachToProps = (dispatch) => ({
-  getSetup: (id) => dispatch(FetchSetup(id))
+const mapDispatchToProps = (dispatch) => ({
+  getSetup: (id) => dispatch(FetchSetup(id)),
+  favoriteSetup: (id, userId) => dispatch(SaveFavorite(id, userId))
 })
-export default connect(mapStateToProps, mapDisptachToProps)(ViewSetup)
+export default connect(mapStateToProps, mapDispatchToProps)(ViewSetup)

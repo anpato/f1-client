@@ -76,7 +76,6 @@ const CreatorDashboard = ({
       const { action, disableAction, placeholder, data } = mapActionToHeader(
         h.toLowerCase()
       )
-      console.log(placeholder)
       return (
         <Header
           key={i}

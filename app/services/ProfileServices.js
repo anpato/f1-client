@@ -21,7 +21,7 @@ export const FavoriteSetup = async (userId, setupId) => {
     const res = await Client.post(
       `/profile/favorites/add?user=${userId}&setup=${setupId}`
     )
-    return res.status
+    return { status: res.status, data: res.data }
   } catch (error) {
     throw error
   }
